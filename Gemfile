@@ -61,3 +61,29 @@ end
 # Replace pg gem with tiny_tds and activerecord-sqlserver-adapter
 gem "tiny_tds"
 gem "activerecord-sqlserver-adapter"
+
+gem "devise"
+gem "devise-two-factor"
+gem "pundit"
+gem "rqrcode"
+
+# Background Jobs
+gem "sidekiq"
+
+# API Integration
+gem "faraday"
+gem "faraday-retry"
+
+# Utilities
+gem "image_processing", "~> 1.2"
+gem "chartkick"
+gem "groupdate"
+gem "prawn"
+gem "prawn-table"
+gem "paper_trail"
+
+group :development, :test do
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
+end
