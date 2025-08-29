@@ -1,0 +1,59 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    command: >
+      bash -c "yarn install --check-files &&
+               bundle install &&
+               rake db:migrate &&
+               rm -f tmp/pids/server.pid &&
+               ./bin/dev"
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/usr/src/app
+      - ~/.ssh:/root/.ssh:ro
+      - bundle-volume:/usr/local/bundle
+    ports:
+      - 3000:3000
+      - 1234:1234
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DB_HOST=192.168.31.91
+      - DB_PORT=1433
+      - DB_USERNAME=glenY
+      - DB_PASSWORD=Passw0rdis1234_.
+      - DB_NAME=railsTest
+    depends_on:
+      - redis
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - bundle-volume:/usr/local/bundle
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DB_HOST=192.168.31.91
+      - DB_PORT=1433
+      - DB_USERNAME=glenY
+      - DB_PASSWORD=Passw0rdis1234_.
+      - DB_NAME=railsTest
+    command: bundle exec sidekiq -C config/sidekiq.yml
+
+  redis:
+    image: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - 6379:6379
+    volumes:
+      - redis:/data
+
+volumes:
+  bundle-volume:
+  redis:
