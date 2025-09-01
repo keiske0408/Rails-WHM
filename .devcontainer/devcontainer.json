@@ -15,14 +15,14 @@
 
   // The optional 'workspaceFolder' property is the path VS Code should open by default when
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  // Open the actual project folder inside the container (matches root docker-compose.yml mount)
+  "workspaceFolder": "/usr/src/app",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/devcontainers/features/ruby:1": {}
   },
-  "mounts": [
-    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
-  ],
+  // Use compose volumes for mounting; remove additional conflicting mounts
+  "mounts": [],
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
@@ -37,6 +37,7 @@
   // "shutdownAction": "none",
 
   // Uncomment the next line to run commands after the container is created.
+  // Ensure development gems (including ruby-lsp) are installed in the container environment
   "postCreateCommand": "bundle install",
 
   // Configure tool-specific properties.

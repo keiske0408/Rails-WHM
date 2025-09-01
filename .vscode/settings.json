@@ -1,0 +1,7 @@
+{
+  "rubyLsp.useBundler": true,
+  "rubyLsp.logLevel": "debug",
+  "[ruby]": {
+    "editor.formatOnSave": true
+  }
+}
