@@ -13,7 +13,7 @@ services:
 
     volumes:
       # Reuse mounts from the root docker-compose.yml (..:/usr/src/app). No extra mount here to avoid conflicts
-      - ..:/usr/src/app:cached
+      - .:/usr/src/app:cached
     working_dir: /usr/src/app
     environment:
       - RAILS_ENV=development
@@ -25,6 +25,5 @@ services:
     #   - SYS_PTRACE
     # security_opt:
     #   - seccomp:unconfined
-
   # Keep the container running for the devcontainer session; the app docker-compose.yml will start the dev server
-  command: sleep infinity
+    command: sleep infinity
