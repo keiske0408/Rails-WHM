@@ -1,8 +1,8 @@
 class CreateGoodsIssuanceItems < ActiveRecord::Migration[8.0]
   def change
     create_table :goods_issuance_items do |t|
-      t.references :goods_issuance, null: false, foreign_key: true
-      t.references :withdrawal_request_item, null: false, foreign_key: true
+      t.references :goods_issuance, null: false, foreign_key: true, index: false
+      t.references :withdrawal_request_item, null: false, foreign_key: true, index: false
       t.decimal :issued_quantity, precision: 12, scale: 3, null: false
       t.text :notes
       t.string :barcode_scanned

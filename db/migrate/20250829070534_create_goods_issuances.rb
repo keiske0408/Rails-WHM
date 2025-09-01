@@ -1,5 +1,6 @@
 class CreateGoodsIssuances < ActiveRecord::Migration[8.0]
-  create_table :goods_issuances do |t|
+  def change
+    create_table :goods_issuances do |t|
       t.string :gi_number, null: false
       t.references :withdrawal_request, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
@@ -16,7 +17,8 @@ class CreateGoodsIssuances < ActiveRecord::Migration[8.0]
     end
 
     add_index :goods_issuances, :gi_number, unique: true
-    add_index :goods_issuances, :withdrawal_request_id
+    # These two are redundant (Rails auto-indexes t.references), but you can leave them if you want control:
+    # add_index :goods_issuances, :withdrawal_request_id
     add_index :goods_issuances, [:status, :issue_date]
     add_index :goods_issuances, :sap_document_number
   end

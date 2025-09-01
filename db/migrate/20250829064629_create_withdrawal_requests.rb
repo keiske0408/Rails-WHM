@@ -17,7 +17,5 @@ class CreateWithdrawalRequests < ActiveRecord::Migration[8.0]
 
     add_index :withdrawal_requests, :wr_number, unique: true
     add_index :withdrawal_requests, [:status, :request_date]
-    add_index :withdrawal_requests, :business_unit_id
-    add_index :withdrawal_requests, :user_id
   end
 end

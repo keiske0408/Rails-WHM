@@ -56,6 +56,11 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Ruby language server for VS Code
+  gem "ruby-lsp", require: false
+  # Optional: formatter and AST for better features
+  gem "syntax_tree", require: false
 end
 
 # Replace pg gem with tiny_tds and activerecord-sqlserver-adapter

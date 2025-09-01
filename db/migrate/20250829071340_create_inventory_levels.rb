@@ -1,7 +1,7 @@
 class CreateInventoryLevels < ActiveRecord::Migration[8.0]
-   def change
+  def change
     create_table :inventory_levels do |t|
-      t.references :item, null: false, foreign_key: true
+      t.references :item, null: false, foreign_key: true, index: false
       t.string :warehouse_location
       t.string :batch_lot
       t.decimal :total_quantity, precision: 12, scale: 3, default: 0

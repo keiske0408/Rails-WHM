@@ -6,7 +6,7 @@ default: &default
   timeout: 5000
   username: <%= ENV["DB_USERNAME"] || "glenY" %>
   password: <%= ENV["DB_PASSWORD"] || "Passw0rdis1234_." %>
-  host: <%= ENV["DB_HOST"] || "10.20.10.211" %>
+  host: <%= ENV["DB_HOST"] || "10.20.10.114" %>
   port: <%= ENV["DB_PORT"] || 1433 %>
   database: <%= ENV["DB_NAME"] || "railsTest" %>
 
